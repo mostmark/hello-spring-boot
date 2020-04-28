@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.example</groupId>
+	<artifactId>hello-spring-boot</artifactId>
+	<version>1.0</version>
+	<name>hello-spring-boot</name>
+	<description>Demo project for Spring Boot</description>
+
+	<properties>
+		<java.version>1.8</java.version>
+		<spring-boot-bom.version>2.1.13.Final-redhat-00001</spring-boot-bom.version>
+		<spring-boot.version>2.1.13.RELEASE</spring-boot.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>me.snowdrop</groupId>
+				<artifactId>spring-boot-bom</artifactId>
+				<version>${spring-boot-bom.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${spring-boot.version}</version>
+				<executions>
+					<execution>
+					  <goals>
+						<goal>repackage</goal>
+					  </goals>
+					</execution>
+				  </executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<repositories>
+		<repository>
+		  <id>redhat-early-access</id>
+		  <name>Red Hat Early Access Repository</name>
+		  <url>https://maven.repository.redhat.com/earlyaccess/all/</url>
+		</repository>
+		<repository>
+		  <id>redhat-ga</id>
+		  <name>Red Hat GA Repository</name>
+		  <url>https://maven.repository.redhat.com/ga/</url>
+		</repository>
+	  </repositories>
+	  <pluginRepositories>
+		<pluginRepository>
+		  <id>redhat-early-access</id>
+		  <name>Red Hat Early Access Repository</name>
+		  <url>https://maven.repository.redhat.com/earlyaccess/all/</url>
+		</pluginRepository>
+		<pluginRepository>
+		  <id>redhat-ga</id>
+		  <name>Red Hat GA Repository</name>
+		  <url>https://maven.repository.redhat.com/ga/</url>
+		</pluginRepository>
+	  </pluginRepositories>
+
+</project>
