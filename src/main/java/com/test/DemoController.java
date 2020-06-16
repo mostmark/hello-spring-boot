@@ -1,7 +1,6 @@
 package com.test;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,12 +8,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DemoController
 {
-    @RequestMapping("/")
-    public List<Customer> findAll()
+    @Autowired
+    private GreetingService greetingService;    
+    
+    @RequestMapping("/hello")
+    public String sayHello()
     {
-        List<Customer> customerList = new ArrayList<Customer>();
-        customerList.add(new Customer(1, "frank"));
-        customerList.add(new Customer(2, "john"));
-        return customerList;
-    }
+        return greetingService.sayHello();
+    }    
 }
