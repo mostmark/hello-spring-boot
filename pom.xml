@@ -9,23 +9,22 @@
 
     <properties>
         <java.version>11</java.version>
-        <spring-boot-bom.version>2.1.14.Final-redhat-00001</spring-boot-bom.version>
-        <spring-boot.version>2.1.14.RELEASE</spring-boot.version>
+        <spring-boot-maven-plugin.version>2.5.12</spring-boot-maven-plugin.version>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>me.snowdrop</groupId>
-                <artifactId>spring-boot-bom</artifactId>
-                <version>${spring-boot-bom.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
+          <dependency>
+            <groupId>dev.snowdrop</groupId>
+            <artifactId>snowdrop-dependencies</artifactId>
+            <version>2.5.12.Final-redhat-00001</version>
+            <type>pom</type>
+            <scope>import</scope>
+          </dependency>
         </dependencies>
-    </dependencyManagement>
+      </dependencyManagement>
 
     <dependencies>
         <dependency>
@@ -45,41 +44,37 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot.version}</version>
+                <version>${spring-boot-maven-plugin.version}</version>
                 <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
+                  <execution>
+                      <goals>
+                          <goal>repackage</goal>
+                      </goals>
+                  </execution>
                 </executions>
+                  <configuration>
+                    <redeploy>true</redeploy>
+                  </configuration>
             </plugin>
         </plugins>
     </build>
 
-    <repositories>
-        <repository>
-            <id>redhat-early-access</id>
-            <name>Red Hat Early Access Repository</name>
-            <url>https://maven.repository.redhat.com/earlyaccess/all/</url>
-        </repository>
-        <repository>
-            <id>redhat-ga</id>
-            <name>Red Hat GA Repository</name>
-            <url>https://maven.repository.redhat.com/ga/</url>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>redhat-early-access</id>
-            <name>Red Hat Early Access Repository</name>
-            <url>https://maven.repository.redhat.com/earlyaccess/all/</url>
-        </pluginRepository>
-        <pluginRepository>
-            <id>redhat-ga</id>
-            <name>Red Hat GA Repository</name>
-            <url>https://maven.repository.redhat.com/ga/</url>
-        </pluginRepository>
-    </pluginRepositories>
+  <!-- Specify the repositories containing Spring Boot artifacts. -->
+  <repositories>
+    <repository>
+      <id>redhat-ga</id>
+      <name>Red Hat GA Repository</name>
+      <url>https://maven.repository.redhat.com/ga/</url>
+    </repository>
+  </repositories>
+
+  <!-- Specify the repositories containing the plugins used to execute the build of your application. -->
+  <pluginRepositories>
+    <pluginRepository>
+      <id>redhat-ga</id>
+      <name>Red Hat GA Repository</name>
+      <url>https://maven.repository.redhat.com/ga/</url>
+    </pluginRepository>
+  </pluginRepositories>
 
 </project>
